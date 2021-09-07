@@ -10,7 +10,7 @@ namespace EmployeesApi.Controllers
     public class StatusController : ControllerBase
     {
         // GET /status -> 200
-        [HttpGet("status")]
+        [HttpGet("status")] // Attributes
         public ActionResult GetTheStatus()
         {
 
