@@ -26,8 +26,13 @@ namespace EmployeesApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddHttpClient<ApiOnCallService>(options =>
+            {
+                options.BaseAddress = new Uri("http://localhost:8080");
+            });
             // services.AddTransient
-            services.AddTransient<IProvideStatus, InProcessStatusProvider>();
+            services.AddTransient<IProvideStatus, NodeJsDeveloperOnCallStatusProvider>();
             // services.AddScoped
             // services.AddSingleton
             services.AddControllers();
