@@ -29,7 +29,7 @@ namespace EmployeesApi
 
             services.AddHttpClient<ApiOnCallService>(options =>
             {
-                options.BaseAddress = new Uri("http://localhost:8080");
+                options.BaseAddress = new Uri(Configuration["nodeApi"]);
             });
             // services.AddTransient
             services.AddTransient<IProvideStatus, NodeJsDeveloperOnCallStatusProvider>();
