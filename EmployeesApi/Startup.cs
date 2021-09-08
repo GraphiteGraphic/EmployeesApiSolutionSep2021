@@ -1,3 +1,4 @@
+using EmployeesApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,14 @@ namespace EmployeesApi
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddHttpClient<ApiOnCallService>(options =>
+            {
+                options.BaseAddress = new Uri(Configuration["nodeApi"]);
+            });
+            // services.AddTransient
+            services.AddTransient<IProvideStatus, NodeJsDeveloperOnCallStatusProvider>();
+            // services.AddScoped
+            // services.AddSingleton
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
