@@ -3,15 +3,15 @@
 const express = require('express');
 
 const PORT = 3000;
-const HOST = '127.0.0.1';
+const HOST = '0.0.0.0';
 
 const app = express();
 
 app.get('/oncall', (req, res) => {
 
     const onCallDeveloper = {
-        name: 'Joe Schmidt',
-        emailAddress: 'joe@aol.com'
+        name: 'Max',
+        emailAddress: 'Max@aol.com'
         };
     res.header('Content-Type', 'application/json');
     const jsonResponse = JSON.stringify(onCallDeveloper);
