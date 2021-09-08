@@ -9,16 +9,21 @@ namespace EmployeesApi.Controllers
 {
     public class StatusController : ControllerBase
     {
+        private readonly IProvideStatus _statusProvider;
+
+        public StatusController(IProvideStatus statusProvider)
+        {
+            _statusProvider = statusProvider;
+        }
+
+
+
         // GET /status -> 200
         [HttpGet("status")] // Attributes
-        public ActionResult GetTheStatus()
+        public async Task<ActionResult> GetTheStatus()
         {
-
-            var response = new GetStatusResponse
-            {
-                Message = "The server is running great!",
-                WhenChecked = DateTime.Now
-            };
+            // WTCYWYH
+            GetStatusResponse response = await _statusProvider.GetCurrentStatusAsync();
             return Ok(response);
         }
     }
@@ -28,6 +33,13 @@ namespace EmployeesApi.Controllers
     {
         public string Message { get; set; }
         public DateTime WhenChecked { get; set; }
+        public StandbyDeveloperInfo StandByDeveloper { get; set; }
+    }
+
+    public class StandbyDeveloperInfo
+    {
+        public string Name { get; set; }
+        public string EmailAddress { get; set; }
     }
 
 }
